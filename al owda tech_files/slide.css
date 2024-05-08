@@ -1,0 +1,134 @@
+.app-list{
+    list-style-type: none;
+    padding: 40px 15px 10px;
+    margin: 0;
+}
+.app-list li{    
+    visibility: visible;
+    animation-delay: 0ms;
+    animation-name: fadeInUp;
+    background-position: 50%;
+/*    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);*/
+    margin: 0 0 30px;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.info{
+    position: absolute;
+    left: 50px;
+    width: auto;
+    max-width: 500px;
+    top: 100px;
+    height: auto;
+    color:#fff;
+}
+.title-app{color:#fff; font-size: 25px;}
+.fadeInRightImg{
+    visibility: visible; 
+    animation-delay: 0ms; 
+    animation-name: fadeInRight;
+    position: absolute;
+    right: 0;
+    width: auto;
+    height: auto;
+    max-height: 85%;
+    left: auto;
+    top: 0;
+    bottom: 0;
+    margin: auto 50px;
+}
+.list-icon{
+    color:#fff;
+    font-size:19px;
+}
+.list-icon li{margin:10px;}
+#gradiant-orange{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    /*background: linear-gradient(to bottom left, rgba(240,89,33,0) 30%, rgba(240,89,33,1) 100%);*/
+}
+
+#gradiant-blue{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom left, rgba(0,175,219,0) 30%, rgba(0,175,219,1) 100%);
+}
+
+#gradiant-red{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom left, rgba(205,14,44,0) 30%, rgba(205,14,44,1) 100%);
+}
+#gradiant-violet{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom left, rgba(27,52,80,0) 30%, rgba(27,52,80,1) 100%);
+}
+#gradiant-polo{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom left, rgba(116,141,27,0) 30%, rgba(116,141,27,1) 100%);
+}
+
+.app-list li{
+    position: relative;
+}
+.list-icon{
+    position: absolute;
+    bottom: 0;
+    left:0;
+}
+
+@media (min-width:300px) and (max-width:500px){
+
+    .fadeInRightImg{                
+        right: auto;
+        width: auto;
+        height: auto;
+        max-height: 120px;
+        left: auto;
+        top: 30px;
+        bottom: auto;
+        position: relative;
+        text-align: center;
+        display: block;
+        margin: 0 auto 20px;        
+    }
+    .info {
+        left: 10%;
+        max-width: 80%;
+        bottom: 30px;
+    }
+
+}
+@media (min-width:500px) and (max-width:700px){
+
+    .fadeInRightImg{                
+        position: absolute;
+        right: 0px;
+        width: auto;
+        height: auto;
+        max-height: 45%;
+        left: auto;
+        top: 0;
+        bottom: 0;
+        margin:20px;      
+    }   
+
+}

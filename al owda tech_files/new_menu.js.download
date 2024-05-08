@@ -1,0 +1,33 @@
+function showMenuDetails(idNumber, hideTarget) {
+    var menuDetailsId = "#subMenuDetails_" + idNumber;
+    hideTarget.find(".menu-hover-div-details").hide();
+    $(menuDetailsId).show();
+
+}
+$(".sub-menu-and-icon-container").mouseover(function () {
+
+    var id = $(this).attr('id');
+    //hide the other details div only for this ul
+    var parent = $(this).parent();
+    var subMenuHolderParent = parent.parent();
+
+    //id=subMenu_25
+    var idNumber = id.toString().split('_')[1];
+    //show the details of this submenu
+    //subMenuDetails_22
+    showMenuDetails(idNumber, subMenuHolderParent);
+
+
+});
+
+jQuery(document).ready(function () {
+    jQuery(document).scroll(function () {
+        if ($(window).scrollTop() > 0) {
+          
+            $(".dropdown-menu.nav-drop-down").addClass("scroll-nav-class");
+        } else {
+            $(".dropdown-menu.nav-drop-down").removeClass("scroll-nav-class");
+        }
+    });
+
+});

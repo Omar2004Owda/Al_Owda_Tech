@@ -1,0 +1,33 @@
+$(function () {
+  appendPlayButton();
+  $(".iframe").click(function (e) {
+    e.preventDefault();
+
+    var src = $(this).parent("a").attr("href") + "?rel=0&autoplay=1";
+
+    var iframe =
+      '<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="600" src="' +
+      src +
+      '" title="YouTube video player" width="100%"></iframe>';
+
+    // show in modal
+    $(".cmModal").removeClass("cmModalHide");
+    $(".cmModal").addClass("cmModalShow");
+    var oldHtml = $(".cmModalData").html();
+    if (oldHtml != iframe) $(".cmModalData").html(iframe);
+  });
+
+  $(".cmCloseContainer .fa,.cmModalOverlay").click(function (e) {
+    e.preventDefault();
+    $(".cmModal").removeClass("cmModalShow");
+    $(".cmModal").addClass("cmModalHide");
+  });
+});
+
+function appendPlayButton() {
+  var imagesContainer = $(".iframe").parent("a");
+  $.each(imagesContainer, function (index, item) {
+    $(item).css({ position: "relative" });
+    $(item).append('<i   class=" iframe iframeIcon fa fa-youtube-play" ></i>');
+  });
+}

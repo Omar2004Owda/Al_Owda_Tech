@@ -1,0 +1,87 @@
+(function ($) {
+
+    function checkMail(valMail) {
+        var ismail = true;
+        var filter = /^.+@.+\..{2,3}$/;
+        if (!filter.test(valMail))
+            ismail = false
+        return ismail;
+    }
+
+    function trim(str) {
+        var str = str.replace(new RegExp('^[\\s]+', 'g'), '');
+        str = str.replace(new RegExp('[\\s]+$', 'g'), '');
+        return str;
+    }
+
+    function validate(form) {
+        var obj = null, value = null, valid = true, validators = null, valid_objs = [], first_valid = true;
+        $("input[valid],textarea[valid]", form).each(function () {
+            obj = $(this);
+            value = obj.val();
+            validators = obj.attr("valid").split(" ");
+            if (($.inArray('valid', validators) > -1) && (!value || value == ""))
+                valid_objs.push(obj);
+            else if (($.inArray('email', validators) > -1) && value && !checkMail(value))
+                valid_objs.push(obj);
+            else if (($.inArray('integer', validators) > -1) && value && !(/^\d+$/.test(value)))
+                valid_objs.push(obj);
+            else if (($.inArray('numeric', validators) > -1) && value && !(/^\d+.?\d*$/.test(value)))
+                valid_objs.push(obj);
+            else
+                obj.removeClass("valid");
+        });
+        if (valid_objs.length > 0) {
+            valid = false;
+            $.each(valid_objs, function () {
+                if (first_valid) {
+                    first_valid = false;
+                    $(this).focus();
+                }
+                $(this).addClass("valid");
+            });
+        }
+        return valid;
+    }
+
+    function SetMessage(type, msg, doc) {
+        var el = (!doc || doc == undefined) ? $("#hdr") : $("#hdr", doc);
+        var msg_div = $("<div id='msg_" + type + "' class='fixed' style='display:none;'>" + msg + "&nbsp;&nbsp;&nbsp;<a href='javascript:;' title='' id='msg_close'>Close</a></div>");
+        $("#msg_err,#msg_succ").remove();
+        el.after(msg_div);
+        msg_div.fadeIn(700, function () {
+            setTimeout(function () {
+                msg_div.fadeOut(700, function () {
+                    $(this).remove();
+                });
+            }, 7000);
+        });
+    }
+
+
+    $(document).ready(function () {
+
+        /* Form submit */
+        $('form').submit(function () {
+            var is_valid = validate($(this));
+            var is_valid_recaptcha = grecaptcha.getResponse().length != 0;
+            if (is_valid_recaptcha === false)
+                $('#recaptcha').addClass("valid");
+            else
+                $('#recaptcha').removeClass("valid");
+            return is_valid && is_valid_recaptcha;
+        });
+
+
+        // to hide message validate
+        $("#msg_err,#msg_succ").show().delay(5000).fadeOut();
+
+        /** Close link of message **/
+        $("#msg_err #msg_close,#msg_succ #msg_close").on("click", function () {
+            $(this).parent().fadeOut(700, function () {
+                $(this).remove();
+            });
+        });
+    });
+
+}(jQuery));
